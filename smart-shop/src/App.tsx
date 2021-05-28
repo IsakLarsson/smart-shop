@@ -68,11 +68,7 @@ function App() {
   };
 
   const createShoppingList = (): void => {
-    /**
-     * need to check if the ingredient exists since earlier, if it does just
-     * add the ammounts together. otherwise add the new ingredient
-     */
-    const r: Recipe[] = [
+    /* const r: Recipe[] = [
       {
         name: "köttfärs",
         ingredients: [
@@ -87,46 +83,20 @@ function App() {
           { name: "gains", ammount: 5 },
         ],
       },
-    ];
+    ]; */
+    console.log("Chosen recipes: ", chosenRecipes);
     if (chosenRecipes.length === 0) return;
-    /* const res = r.reduce((acc, { ingredients }: Recipe) => {
+    const res = chosenRecipes.reduce((acc, { ingredients }: Recipe) => {
       ingredients.forEach((i) => {
         const idx = acc.findIndex((ingredient) => ingredient.name === i.name);
         if (!idx) acc[idx].ammount += i.ammount;
         else acc.push({ ...i });
       });
       return acc;
-    }, []); */
+    }, [] as Ingredient[]);
 
-    chosenRecipes.forEach((recipe, index) => {
-      if (index === 0) {
-        setShoppingList(chosenRecipes[0].ingredients);
-        return;
-      }
-
-      /* ingredients.forEach((ingredient, index) => {
-         if (ingredient.name in newArr) {
-          newArr[ingredient.name] += ingredient.ammount;
-          console.log("exists");
-        } else newArr.push(ingredient); 
-      }); */
-    });
-  };
-
-  const add = (arr: Ingredient[], ingredient: Ingredient) => {
-    const { length } = arr;
-    const id = length + 1;
-    const ingredientName = ingredient.name;
-    const ingredientAmmount = ingredient.ammount;
-    const found = arr.some((ingredient) => ingredient.name === ingredientName);
-    if (!found) arr.push({ name: ingredientName, ammount: ingredientAmmount });
-    console.log(arr);
-  };
-
-  const ingredientExists = (ingredientName: string): boolean => {
-    return ingredientList.some(function (ingredient) {
-      return ingredient.name === ingredientName;
-    });
+    console.log(res);
+    setShoppingList(res);
   };
 
   useEffect(() => {
@@ -202,6 +172,17 @@ function App() {
         </ul>
         <div>
           <h2>ShoppingList</h2>
+          <ul>
+            {shoppingList?.map((ingredient, index) => {
+              return (
+                <li key={`sl:${index}`}>
+                  <p>
+                    {ingredient.name} {ingredient.ammount}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </div>
