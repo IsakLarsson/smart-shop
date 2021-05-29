@@ -23,6 +23,10 @@ h5 {
   max-width: 80%;
 }
 
+#textfield-grid {
+  margin-top: 1rem;
+}
+
 .add-ingredient-button {
   font-family: "Poppins", sans-serif; /* Weird that I have to set it here */
   color: #fff;

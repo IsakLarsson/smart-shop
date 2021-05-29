@@ -11,7 +11,7 @@ import { Ingredient, Recipe } from "../interfaces/interfaces";
 
 interface ContextProps {
   recipeName?: string;
-  recipeList?: Recipe[];
+  recipeList: Recipe[];
   chosenRecipes?: Recipe[];
   ingredientList: Ingredient[];
   ingredientName?: string;
@@ -30,6 +30,7 @@ export const RecipeContext = createContext<ContextProps>({
   ingredientName: "",
   ingredientAmmount: 0,
   shoppingList: [],
+  recipeList: [],
   setRecipeName: (name: string) => {},
   setIngredientName: (name: string) => {},
   setIngredientAmmount: (ammount: number) => {},
@@ -64,7 +65,7 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const addRecipe = (): void => {
-    if (recipeName === "") return;
+    if (recipeName === "" || ingredientList.length == 0) return;
     const newRecipe: Recipe = {
       name: recipeName,
       ingredients: ingredientList,
@@ -98,6 +99,7 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
     <RecipeContext.Provider
       value={{
         recipeName,
+        recipeList,
         setRecipeName,
         setIngredientName,
         setIngredientAmmount,
