@@ -44,17 +44,6 @@ function App() {
     }
   };
 
-  const addRecipe = (): void => {
-    if (recipeName === "") return;
-    const newRecipe: Recipe = {
-      name: recipeName,
-      ingredients: ingredientList,
-    };
-    const newList = [...recipeList, newRecipe];
-    setRecipeList(newList);
-    setIngredientList([]);
-  };
-
   const handleRecipeClick = (index: number): void => {
     const chosenRecipe = recipeList[index];
     setChosenRecipes([...chosenRecipes, chosenRecipe]);

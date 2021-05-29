@@ -21,16 +21,21 @@ interface ContextProps {
   setIngredientName: (name: string) => void;
   setIngredientAmmount: (ammount: number) => void;
   addIngredient: () => void;
+  addRecipe: () => void;
+  createShoppingList: () => void;
 }
 
 export const RecipeContext = createContext<ContextProps>({
   ingredientList: [],
   ingredientName: "",
   ingredientAmmount: 0,
+  shoppingList: [],
   setRecipeName: (name: string) => {},
   setIngredientName: (name: string) => {},
   setIngredientAmmount: (ammount: number) => {},
   addIngredient: () => {},
+  addRecipe: () => {},
+  createShoppingList: () => {},
 });
 
 interface ProviderProps {
@@ -58,6 +63,37 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
     setIngredientAmmount(0);
   };
 
+  const addRecipe = (): void => {
+    if (recipeName === "") return;
+    const newRecipe: Recipe = {
+      name: recipeName,
+      ingredients: ingredientList,
+    };
+    console.log("adding recipe: ", newRecipe);
+    const newList = [...recipeList, newRecipe];
+    setRecipeList(newList);
+    setIngredientList([]);
+  };
+
+  const createShoppingList = (): void => {
+    console.log("creating shoppinglist");
+    if (chosenRecipes.length === 0) return;
+
+    let addedIngredients: Ingredient[] = [];
+    chosenRecipes.forEach((recipe: Recipe) => {
+      recipe.ingredients.forEach((recipeIngredient: Ingredient) => {
+        const index = addedIngredients.findIndex(
+          (ingredient: Ingredient) => ingredient.name === recipeIngredient.name
+        );
+        if (index === -1) addedIngredients.push({ ...recipeIngredient });
+        else addedIngredients[index].ammount += recipeIngredient.ammount;
+      });
+    });
+
+    console.log(addedIngredients);
+    setShoppingList(addedIngredients);
+  };
+
   return (
     <RecipeContext.Provider
       value={{
@@ -69,6 +105,9 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
         ingredientList,
         ingredientName,
         ingredientAmmount,
+        addRecipe,
+        createShoppingList,
+        shoppingList,
       }}
     >
       {children}

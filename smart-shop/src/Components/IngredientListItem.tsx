@@ -1,4 +1,5 @@
 import React from "react";
+import "./IngredientListStyles.css";
 
 interface IngredientListItemProps {
   ingredientName: string;

@@ -68,6 +68,7 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
       <h1>Hi!, Welcome to SmartShop!</h1>
       <h4>Let’s start by adding your first recipe</h4>
       <TextField
+        value={recipeName}
         id="recipeName"
         label="Name"
         variant="outlined"
@@ -108,13 +109,7 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
           />
         </Grid>
       </Grid>
-      <button
-        className="add-ingredient-button"
-        onClick={() => {
-          addIngredient();
-          setOpen(true);
-        }}
-      >
+      <button className="add-ingredient-button" onClick={addIngredient}>
         ADD INGREDIENT
       </button>
 

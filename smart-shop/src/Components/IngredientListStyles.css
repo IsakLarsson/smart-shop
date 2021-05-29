@@ -1,4 +1,14 @@
+.ingredient-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .ingredient-list-item {
+  margin-top: 8px;
+  padding: 0.5rem 2rem;
   max-width: 200px;
   background-color: var(--ingredient-list-item);
+  border-radius: 10px;
 }
