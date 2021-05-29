@@ -17,7 +17,7 @@ function App() {
   const [ingredientName, setIngredientName] = useState("");
   const [recipeName, setRecipeName] = useState("");
   const [ingredientAmmount, setIngredientAmmount] = useState(0);
-  const [shoppingList, setShoppingList] = useState<Ingredient[]>();
+  const [shoppingList, setShoppingList] = useState<Ingredient[]>([]);
   const [chosenRecipes, setChosenRecipes] = useState<Recipe[]>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -86,23 +86,47 @@ function App() {
     ]; */
     console.log("Chosen recipes: ", chosenRecipes);
     if (chosenRecipes.length === 0) return;
-    const res = chosenRecipes.reduce((acc, { ingredients }: Recipe) => {
-      ingredients.forEach((i) => {
+    /* const res = chosenRecipes.reduce((acc, { ingredients }: Recipe) => {
+      ingredients.forEach((i, index) => {
+        console.log("looking for ingredient: ", i.name, " in ", ingredients);
         const idx = acc.findIndex((ingredient) => ingredient.name === i.name);
-        if (!idx) acc[idx].ammount += i.ammount;
-        else acc.push({ ...i });
+        if (!idx) {
+          acc[idx].ammount += i.ammount;
+          console.log("index of: ", i.name, " found");
+        } else acc.push(i);
+        console.log("INDEX: ", index);
       });
       return acc;
-    }, [] as Ingredient[]);
+    }, [] as Ingredient[]); */
 
-    console.log(res);
-    setShoppingList(res);
+    //for each recipe
+    //for each ingredient in recipes ingredientlist
+    //check if ingredientname exists in accumulated list of ingredients
+    //if exists
+    //add ammount to that index place
+    //if not
+    //add the whole ingredient object to the list
+
+    let cumsum: Ingredient[] = [];
+    chosenRecipes.forEach((recipe) => {
+      recipe.ingredients.forEach((recipeIngredient) => {
+        const index = cumsum.findIndex(
+          (ingredient) => ingredient.name === recipeIngredient.name
+        );
+        if (index === -1) {
+          cumsum.push({ ...recipeIngredient });
+        } else {
+          cumsum[index].ammount += recipeIngredient.ammount;
+        }
+      });
+    });
+
+    console.log(cumsum);
+    setShoppingList(cumsum);
   };
 
   useEffect(() => {
     console.log("ingredient list: ", ingredientList);
-
-    if (chosenRecipes.length > 0) createShoppingList();
 
     return () => {};
   }, [ingredientList, recipeList, chosenRecipes]);
@@ -172,6 +196,7 @@ function App() {
         </ul>
         <div>
           <h2>ShoppingList</h2>
+          <button onClick={createShoppingList}>Create shopping list</button>
           <ul>
             {shoppingList?.map((ingredient, index) => {
               return (
