@@ -1,5 +1,7 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import "./App.css";
+import { RecipeContext } from "./Contexts/RecipeProvider";
+import { FirstRecipePage } from "./Pages/FirstRecipePage";
 
 interface Ingredient {
   name: string;
@@ -12,6 +14,8 @@ interface Recipe {
 }
 
 function App() {
+  let hej = useContext(RecipeContext);
+
   const [recipeList, setRecipeList] = useState<Recipe[]>([]);
   const [ingredientList, setIngredientList] = useState<Ingredient[]>([]);
   const [ingredientName, setIngredientName] = useState("");
@@ -71,29 +75,29 @@ function App() {
     if (chosenRecipes.length === 0) return;
 
     let addedIngredients: Ingredient[] = [];
-    chosenRecipes.forEach((recipe) => {
-      recipe.ingredients.forEach((recipeIngredient) => {
+    chosenRecipes.forEach((recipe: Recipe) => {
+      recipe.ingredients.forEach((recipeIngredient: Ingredient) => {
         const index = addedIngredients.findIndex(
-          (ingredient) => ingredient.name === recipeIngredient.name
+          (ingredient: Ingredient) => ingredient.name === recipeIngredient.name
         );
         if (index === -1) addedIngredients.push({ ...recipeIngredient });
         else addedIngredients[index].ammount += recipeIngredient.ammount;
       });
     });
 
-    console.log(addedIngredients);
     setShoppingList(addedIngredients);
   };
 
   useEffect(() => {
-    console.log("ingredient list: ", ingredientList);
+    console.log("context: ", hej);
 
     return () => {};
   }, [ingredientList, recipeList, chosenRecipes]);
 
   return (
     <div className="App">
-      <h1>Hello welcome to recipe man</h1>
+      <FirstRecipePage />
+      {/* <h1>Hello welcome to recipe man</h1>
       <input
         type="text"
         name="recipeName"
@@ -179,7 +183,7 @@ function App() {
             })}
           </ul>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
