@@ -68,61 +68,21 @@ function App() {
   };
 
   const createShoppingList = (): void => {
-    /* const r: Recipe[] = [
-      {
-        name: "köttfärs",
-        ingredients: [
-          { name: "vitlök", ammount: 1 },
-          { name: "gul lök", ammount: 1 },
-        ],
-      },
-      {
-        name: "good ole chicken",
-        ingredients: [
-          { name: "vitlök", ammount: 2 },
-          { name: "gains", ammount: 5 },
-        ],
-      },
-    ]; */
-    console.log("Chosen recipes: ", chosenRecipes);
     if (chosenRecipes.length === 0) return;
-    /* const res = chosenRecipes.reduce((acc, { ingredients }: Recipe) => {
-      ingredients.forEach((i, index) => {
-        console.log("looking for ingredient: ", i.name, " in ", ingredients);
-        const idx = acc.findIndex((ingredient) => ingredient.name === i.name);
-        if (!idx) {
-          acc[idx].ammount += i.ammount;
-          console.log("index of: ", i.name, " found");
-        } else acc.push(i);
-        console.log("INDEX: ", index);
-      });
-      return acc;
-    }, [] as Ingredient[]); */
 
-    //for each recipe
-    //for each ingredient in recipes ingredientlist
-    //check if ingredientname exists in accumulated list of ingredients
-    //if exists
-    //add ammount to that index place
-    //if not
-    //add the whole ingredient object to the list
-
-    let cumsum: Ingredient[] = [];
+    let addedIngredients: Ingredient[] = [];
     chosenRecipes.forEach((recipe) => {
       recipe.ingredients.forEach((recipeIngredient) => {
-        const index = cumsum.findIndex(
+        const index = addedIngredients.findIndex(
           (ingredient) => ingredient.name === recipeIngredient.name
         );
-        if (index === -1) {
-          cumsum.push({ ...recipeIngredient });
-        } else {
-          cumsum[index].ammount += recipeIngredient.ammount;
-        }
+        if (index === -1) addedIngredients.push({ ...recipeIngredient });
+        else addedIngredients[index].ammount += recipeIngredient.ammount;
       });
     });
 
-    console.log(cumsum);
-    setShoppingList(cumsum);
+    console.log(addedIngredients);
+    setShoppingList(addedIngredients);
   };
 
   useEffect(() => {
@@ -195,6 +155,16 @@ function App() {
             })}
         </ul>
         <div>
+          <h2>Chosen recipes</h2>
+          <ul>
+            {chosenRecipes?.map((recipe, index) => {
+              return (
+                <li key={`cr: ${index}`}>
+                  <h3>{recipe.name}</h3>
+                </li>
+              );
+            })}
+          </ul>
           <h2>ShoppingList</h2>
           <button onClick={createShoppingList}>Create shopping list</button>
           <ul>
