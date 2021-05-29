@@ -1,0 +1,4 @@
+.ingredient-list-item {
+  max-width: 200px;
+  background-color: var(--ingredient-list-item);
+}

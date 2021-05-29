@@ -1,7 +1,9 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import "./App.css";
 import { RecipeContext } from "./Contexts/RecipeProvider";
-import { FirstRecipePage } from "./Pages/FirstRecipePage";
+import { AddRecipePage } from "./Pages/AddRecipePage";
+import { ThemeProvider, Button } from "@material-ui/core";
+import theme from "./theme";
 
 interface Ingredient {
   name: string;
@@ -15,7 +17,6 @@ interface Recipe {
 
 function App() {
   let hej = useContext(RecipeContext);
-
   const [recipeList, setRecipeList] = useState<Recipe[]>([]);
   const [ingredientList, setIngredientList] = useState<Ingredient[]>([]);
   const [ingredientName, setIngredientName] = useState("");
@@ -41,18 +42,6 @@ function App() {
         console.log("case not found");
         break;
     }
-  };
-
-  const addIngredient = (): void => {
-    if (ingredientName === "" || ingredientAmmount === 0) return;
-    const newIngredient: Ingredient = {
-      name: ingredientName,
-      ammount: ingredientAmmount,
-    };
-    const newList = [...ingredientList, newIngredient];
-    setIngredientList(newList);
-    setIngredientName("");
-    setIngredientAmmount(0);
   };
 
   const addRecipe = (): void => {
@@ -95,9 +84,14 @@ function App() {
   }, [ingredientList, recipeList, chosenRecipes]);
 
   return (
-    <div className="App">
-      <FirstRecipePage />
-      {/* <h1>Hello welcome to recipe man</h1>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <AddRecipePage variant="first" />
+        {/* 
+        <Button variant="contained" color="primary">
+          CLICK
+        </Button> */}
+        {/* <h1>Hello welcome to recipe man</h1>
       <input
         type="text"
         name="recipeName"
@@ -184,7 +178,8 @@ function App() {
           </ul>
         </div>
       </div> */}
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 

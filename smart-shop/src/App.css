@@ -1,10 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+:root {
+  --main-text-color: #373c49;
+  --red-button-color: #e65757;
+  --hover-red-button: #c44b4b;
+  --ingredient-list-item: #f3eed9;
+  list-style-type: none;
+}
+
+html {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
 .App {
   text-align: center;
   font-family: "Poppins", sans-serif;
+  max-width: 375px;
 }
 
-ul {
-  list-style-type: none;
+.add-recipe-button {
+  font-family: "Poppins", sans-serif; /* Weird that I have to set it here */
+  font-size: large;
+  color: #fff;
+  padding: 7px 60px;
+  margin-top: 5rem;
+  font-weight: 500;
+  background-color: var(--red-button-color);
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
+  transition: ease-in-out 0.2s;
+}
+
+.add-recipe-button:hover {
+  background-color: var(--hover-red-button);
 }
