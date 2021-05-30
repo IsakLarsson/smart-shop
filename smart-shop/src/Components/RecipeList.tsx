@@ -5,23 +5,14 @@ import "./RecipeListStyles.css";
 
 interface IngredientListProps {
   recipeList: Recipe[];
-  recipeSelector: (index: number) => void;
 }
 
-export const RecipeList: React.FC<IngredientListProps> = ({
-  recipeList,
-  recipeSelector,
-}) => {
+export const RecipeList: React.FC<IngredientListProps> = ({ recipeList }) => {
   return (
     <div className="recipe-list">
       {recipeList.map((recipe, index) => {
         return (
-          <RecipeListItem
-            key={index}
-            recipeName={recipe.name}
-            index={index}
-            onClick={recipeSelector}
-          />
+          <RecipeListItem key={index} index={index} recipeName={recipe.name} />
         );
       })}
     </div>

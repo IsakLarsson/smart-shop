@@ -1,8 +1,8 @@
-import { Box, Grid, Snackbar, TextField, Typography } from "@material-ui/core";
+import { Grid, Snackbar, TextField } from "@material-ui/core";
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import "./RecipePageStyles.css";
 import { Container } from "@material-ui/core";
-import { AddRecipeButton } from "../Components/AddRecipeButton";
+import { BigAddButton } from "../Components/BigAddButton";
 import Foodgroup from "../Icons/Foodgroup.svg";
 import { RecipeContext } from "../Contexts/RecipeProvider";
 import { IngredientList } from "../Components/IngredientList";
@@ -25,7 +25,6 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
     setRecipeName,
     setIngredientName,
     setIngredientAmmount,
-    addIngredient,
     ingredientList,
     ingredientName,
     ingredientAmmount,
@@ -64,15 +63,18 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
   useEffect(() => {
     console.log(recipeContext);
     return () => {};
-  }, []);
+  });
 
   return (
     <Container className="recipe-page-container">
-      <h1>Hi!, Welcome to SmartShop!</h1>
-      <h4>Let’s start by adding your first recipe</h4>
-
-      {/* 
-      <h4>And also of course its ingredients!</h4> */}
+      {variant === "first" ? (
+        <div>
+          <h1>Hi!, Welcome to SmartShop!</h1>
+          <h4>Let’s start by adding your first recipe</h4>
+        </div>
+      ) : (
+        <h1>Add recipe</h1>
+      )}
 
       <Grid container justify="center" spacing={2} id="textfield-grid">
         <Grid item xs={12}>
@@ -132,7 +134,7 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
             : console.log("empty fields empty"); //This checking should be implemented via the textfields
         }}
       >
-        <AddRecipeButton />
+        <BigAddButton variant="addRecipe" />
       </div>
 
       <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>

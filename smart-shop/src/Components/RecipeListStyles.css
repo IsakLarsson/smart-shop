@@ -3,8 +3,9 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 250px;
+  width: 100%;
   padding: 1rem;
+  margin-bottom: 0.8rem;
   border-radius: 10px;
 }
 
@@ -19,6 +20,13 @@
   height: auto;
 }
 
-h3 {
+.recipe-item-text h3 {
   margin-top: 0px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin: 0 10px;
+}
+
+.round-plus-button:hover {
+  color: var(--hover-red-button);
 }

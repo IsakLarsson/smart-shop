@@ -75,6 +75,7 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
     };
     console.log("adding recipe: ", newRecipe);
     const newList = [...recipeList, newRecipe];
+    setRecipeName("");
     setRecipeList(newList);
     setIngredientList([]);
   };
