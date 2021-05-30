@@ -89,6 +89,7 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
         </Grid>
         <Grid item xs={6}>
           <TextField
+            fullWidth={true}
             value={ingredientName}
             id="ingredientName"
             label="Ingredient"
@@ -108,6 +109,7 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
             name="ingredientAmmount"
             onChange={handleChange}
             type="number" //Will probably want to change this later
+            fullWidth={true}
           />
         </Grid>
       </Grid>

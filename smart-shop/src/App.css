@@ -8,7 +8,7 @@
   list-style-type: none;
 }
 
-html {
+body {
   min-height: 100vh;
   min-width: 100vw;
   display: flex;
@@ -16,6 +16,7 @@ html {
 }
 
 .App {
+  min-width: 100vw;
   text-align: center;
   font-family: "Poppins", sans-serif;
 }

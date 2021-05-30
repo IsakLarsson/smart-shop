@@ -7,11 +7,18 @@ import { RecipeContext } from "../Contexts/RecipeProvider";
 interface HomePageProps {}
 
 export const HomePage: React.FC<HomePageProps> = ({}) => {
-  const { recipeList } = useContext(RecipeContext);
+  const { recipeList, chosenRecipes, setChosenRecipes } =
+    useContext(RecipeContext);
+
+  const handleRecipeClick = (index: number): void => {
+    const chosenRecipe = recipeList[index];
+    setChosenRecipes([...chosenRecipes, chosenRecipe]);
+  };
+
   return (
-    <Container maxWidth="sm" className="home-page-container">
-      <h3>Your recipes</h3>
-      <RecipeList recipeList={recipeList} />
+    <Container className="home-page-container">
+      <h4>Your recipes</h4>
+      <RecipeList recipeList={recipeList} recipeSelector={handleRecipeClick} />
     </Container>
   );
 };

@@ -12,7 +12,7 @@ import { Ingredient, Recipe } from "../interfaces/interfaces";
 interface ContextProps {
   recipeName?: string;
   recipeList: Recipe[];
-  chosenRecipes?: Recipe[];
+  chosenRecipes: Recipe[];
   ingredientList: Ingredient[];
   ingredientName?: string;
   ingredientAmmount?: number;
@@ -23,6 +23,7 @@ interface ContextProps {
   addIngredient: () => void;
   addRecipe: () => void;
   createShoppingList: () => void;
+  setChosenRecipes: (recipeList: Recipe[]) => void;
 }
 
 export const RecipeContext = createContext<ContextProps>({
@@ -31,12 +32,14 @@ export const RecipeContext = createContext<ContextProps>({
   ingredientAmmount: 0,
   shoppingList: [],
   recipeList: [],
+  chosenRecipes: [],
   setRecipeName: (name: string) => {},
   setIngredientName: (name: string) => {},
   setIngredientAmmount: (ammount: number) => {},
   addIngredient: () => {},
   addRecipe: () => {},
   createShoppingList: () => {},
+  setChosenRecipes: (recipeList: Recipe[]) => {},
 });
 
 interface ProviderProps {
@@ -110,6 +113,8 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
         addRecipe,
         createShoppingList,
         shoppingList,
+        setChosenRecipes,
+        chosenRecipes,
       }}
     >
       {children}

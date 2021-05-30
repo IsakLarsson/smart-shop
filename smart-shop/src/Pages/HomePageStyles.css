@@ -1,4 +1,9 @@
 .home-page-container {
-  min-width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+
+  max-width: 350px;
   text-align: start;
 }

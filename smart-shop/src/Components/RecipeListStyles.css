@@ -4,7 +4,7 @@
   justify-content: start;
   align-items: center;
   width: 250px;
-  padding: 0 1rem;
+  padding: 1rem;
   border-radius: 10px;
 }
 
@@ -17,4 +17,8 @@
 .list-item-image-container img {
   width: 100%;
   height: auto;
+}
+
+h3 {
+  margin-top: 0px;
 }
