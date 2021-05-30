@@ -52,6 +52,10 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
     }
   };
 
+  const handleOpen = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setOpen(true);
+  };
+
   const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
       return;
@@ -137,7 +141,14 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
         <BigAddButton variant="addRecipe" />
       </div>
 
-      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+      {/* snackbar giving me problems */}
+      <Snackbar
+        open={open}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        key="snackbar"
+      >
         <Alert onClose={handleClose} severity="success">
           Ingredient Added!
         </Alert>
