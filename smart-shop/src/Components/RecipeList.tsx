@@ -10,11 +10,17 @@ interface IngredientListProps {
 export const RecipeList: React.FC<IngredientListProps> = ({ recipeList }) => {
   return (
     <div className="recipe-list">
-      {recipeList.map((recipe, index) => {
-        return (
-          <RecipeListItem key={index} index={index} recipeName={recipe.name} />
-        );
-      })}
+      <ul>
+        {recipeList.map((recipe, index) => {
+          return (
+            <RecipeListItem
+              key={index}
+              index={index}
+              recipeName={recipe.name}
+            />
+          );
+        })}
+      </ul>
     </div>
   );
 };

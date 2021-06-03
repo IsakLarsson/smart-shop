@@ -12,15 +12,17 @@ export const IngredientList: React.FC<IngredientListProps> = ({
 }) => {
   return (
     <div className="ingredient-list">
-      {ingredientList.map((ingredient, index) => {
-        return (
-          <IngredientListItem
-            key={`ingrItm: ${index}`}
-            ingredientName={ingredient.name}
-            ammount={ingredient.ammount}
-          />
-        );
-      })}
+      <ul>
+        {ingredientList.map((ingredient, index) => {
+          return (
+            <IngredientListItem
+              key={`ingrItm: ${index}`}
+              ingredientName={ingredient.name}
+              ammount={ingredient.ammount}
+            />
+          );
+        })}
+      </ul>
     </div>
   );
 };

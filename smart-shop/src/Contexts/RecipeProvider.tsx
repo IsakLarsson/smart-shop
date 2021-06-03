@@ -17,7 +17,7 @@ interface ContextProps {
   ingredientList: Ingredient[];
   ingredientName?: string;
   ingredientAmmount?: number;
-  shoppingList?: Ingredient[];
+  shoppingList: Ingredient[];
   setRecipeName: (name: string) => void;
   setIngredientName: (name: string) => void;
   setIngredientAmmount: (ammount: number) => void;
@@ -25,6 +25,8 @@ interface ContextProps {
   addRecipe: () => void;
   createShoppingList: () => void;
   setChosenRecipes: (recipeList: Recipe[]) => void;
+  checkedIngredients: Ingredient[];
+  handleIngredientCheck: (ingredient: Ingredient, index: number) => void;
 }
 
 export const RecipeContext = createContext<ContextProps>({
@@ -41,6 +43,8 @@ export const RecipeContext = createContext<ContextProps>({
   addRecipe: () => {},
   createShoppingList: () => {},
   setChosenRecipes: (recipeList: Recipe[]) => {},
+  checkedIngredients: [],
+  handleIngredientCheck: (ingredient: Ingredient, index: number) => {},
 });
 
 interface ProviderProps {
@@ -55,6 +59,9 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
   const [ingredientAmmount, setIngredientAmmount] = useState(0);
   const [shoppingList, setShoppingList] = useState<Ingredient[]>([]);
   const [chosenRecipes, setChosenRecipes] = useState<Recipe[]>([]);
+  const [checkedIngredients, setCheckedIngredients] = useState<Ingredient[]>(
+    []
+  );
 
   const addIngredient = (): void => {
     if (ingredientName === "" || ingredientAmmount === 0) return;
@@ -100,6 +107,18 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
     setShoppingList(addedIngredients);
   };
 
+  const handleIngredientCheck = (
+    ingredient: Ingredient,
+    index: number
+  ): void => {
+    const checkedIngredients = shoppingList.splice(index, 1);
+    setCheckedIngredients(checkedIngredients);
+    setShoppingList(shoppingList);
+
+    console.log("crossed items: ", checkedIngredients);
+    console.log("shoppingList: ", shoppingList);
+  };
+
   return (
     <RecipeContext.Provider
       value={{
@@ -117,6 +136,8 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
         shoppingList,
         setChosenRecipes,
         chosenRecipes,
+        checkedIngredients,
+        handleIngredientCheck,
       }}
     >
       {children}

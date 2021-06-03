@@ -5,7 +5,6 @@
   --hover-red-button: #c44b4b;
   --ingredient-list-item: #f3eed9;
   --recipe-box-color: #ecefff;
-  list-style-type: none;
 }
 
 body {
@@ -43,4 +42,9 @@ body {
 
 .add-recipe-button:hover {
   background-color: var(--hover-red-button);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
 }
