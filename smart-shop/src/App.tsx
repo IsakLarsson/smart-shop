@@ -5,6 +5,7 @@ import { ThemeProvider } from "@material-ui/core";
 import theme from "./theme";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { HomePage } from "./Pages/HomePage";
+import { ShoppingListPage } from "./Pages/ShoppingListPage";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
             </Route>
             <Route exact path="/home">
               <HomePage />
+            </Route>
+            <Route exact path="/shoppingList">
+              <ShoppingListPage />
             </Route>
           </Switch>
         </Router>

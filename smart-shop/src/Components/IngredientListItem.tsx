@@ -1,3 +1,4 @@
+import { Divider, Grid } from "@material-ui/core";
 import React from "react";
 import "./IngredientListStyles.css";
 
@@ -12,7 +13,18 @@ export const IngredientListItem: React.FC<IngredientListItemProps> = ({
 }) => {
   return (
     <li className="ingredient-list-item">
-      {ingredientName} , ammount: {ammount}
+      <Grid container direction="row" justify="space-between">
+        <Grid item>
+          <p className="ingredient-item">{ingredientName}</p>
+        </Grid>
+        <Grid item>
+          <p className="ingredient-item" id="ingredient-ammount">
+            {ammount}
+          </p>
+        </Grid>
+      </Grid>
+
+      <Divider />
     </li>
   );
 };

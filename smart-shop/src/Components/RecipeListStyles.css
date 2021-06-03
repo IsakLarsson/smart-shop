@@ -1,12 +1,13 @@
 .recipe-list-item {
   background-color: var(--recipe-box-color);
-  display: flex;
-  justify-content: start;
-  align-items: center;
   width: 100%;
-  padding: 1rem;
   margin-bottom: 0.8rem;
   border-radius: 10px;
+}
+
+.recipe-list-item-container {
+  width: 100%;
+  padding: 1rem;
 }
 
 .list-item-image-container {

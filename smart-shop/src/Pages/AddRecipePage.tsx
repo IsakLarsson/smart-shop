@@ -52,20 +52,8 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
     }
   };
 
-  const handleOpen = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setOpen(true);
-  };
-
-  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
   useEffect(() => {
-    console.log(recipeContext);
+    console.log("Recipe context: ", recipeContext);
     return () => {};
   });
 
@@ -122,13 +110,15 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
 
       <AddIngredientButton />
 
-      {ingredientList?.length !== 0 ? (
-        <IngredientList ingredientList={ingredientList} />
-      ) : (
-        <>
-          <h5>You'll see your list of ingredients here!</h5>
-        </>
-      )}
+      <div className="ingredient-list-wrapper">
+        {ingredientList?.length !== 0 ? (
+          <IngredientList ingredientList={ingredientList} />
+        ) : (
+          <>
+            <h5>You'll see your list of ingredients here!</h5>
+          </>
+        )}
+      </div>
 
       <div
         className="recipe-button-container"
@@ -142,17 +132,6 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
       </div>
 
       {/* snackbar giving me problems */}
-      <Snackbar
-        open={open}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        autoHideDuration={2000}
-        onClose={handleClose}
-        key="snackbar"
-      >
-        <Alert onClose={handleClose} severity="success">
-          Ingredient Added!
-        </Alert>
-      </Snackbar>
     </Container>
   );
 };

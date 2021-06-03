@@ -5,6 +5,7 @@ interface AddIngredientButtonProps {}
 
 export const AddIngredientButton: React.FC<AddIngredientButtonProps> = ({}) => {
   const { addIngredient } = useContext(RecipeContext);
+
   return (
     <button className="add-ingredient-button" onClick={addIngredient}>
       ADD INGREDIENT

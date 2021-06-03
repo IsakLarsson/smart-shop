@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useHistory } from "react-router-dom";
 
 import { Ingredient, Recipe } from "../interfaces/interfaces";
 

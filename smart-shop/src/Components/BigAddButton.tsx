@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { RecipeContext } from "../Contexts/RecipeProvider";
 
 interface AddRecipeButtonProps {
@@ -7,6 +8,7 @@ interface AddRecipeButtonProps {
 
 export const BigAddButton: React.FC<AddRecipeButtonProps> = ({ variant }) => {
   const { addRecipe, createShoppingList } = useContext(RecipeContext);
+  const history = useHistory();
 
   return (
     <div className="centering-div">
@@ -15,7 +17,13 @@ export const BigAddButton: React.FC<AddRecipeButtonProps> = ({ variant }) => {
           ADD RECIPE
         </button>
       ) : variant === "createShoppingList" ? (
-        <button className="add-recipe-button" onClick={createShoppingList}>
+        <button
+          className="add-recipe-button"
+          onClick={() => {
+            createShoppingList();
+            history.push("/shoppingList");
+          }}
+        >
           GENERATE LIST
         </button>
       ) : (

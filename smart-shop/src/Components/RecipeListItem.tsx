@@ -30,7 +30,12 @@ export const RecipeListItem: React.FC<RecipeListItemProps> = ({
 }) => {
   return (
     <li className="recipe-list-item">
-      <Grid container justify="space-evenly" alignItems="center">
+      <Grid
+        container
+        justify="space-evenly"
+        alignItems="center"
+        className="recipe-list-item-container"
+      >
         <Grid item xs={3}>
           <div className="list-item-image-container">
             <img src={Pizza} alt="pizza" />

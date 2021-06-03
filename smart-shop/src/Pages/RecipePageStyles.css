@@ -16,7 +16,7 @@ h4 {
 }
 
 h5 {
-  margin-top: 4rem;
+  margin-top: 0rem;
 }
 
 .recipe-page-container {
@@ -43,8 +43,13 @@ h5 {
   background-color: var(--hover-red-button);
 }
 
+.ingredient-list-wrapper {
+  margin-top: 2rem;
+  min-height: 350px;
+}
+
 .recipe-button-container {
-  margin-top: 4rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
