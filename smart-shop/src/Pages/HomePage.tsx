@@ -1,4 +1,4 @@
-import { Container } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import React, { createContext, useContext } from "react";
 import "./HomePageStyles.css";
 import { RecipeList } from "../Components/RecipeList";
@@ -9,26 +9,26 @@ import { useHistory } from "react-router";
 interface ContextProps {
   addChosenRecipe: (index: number) => void;
 }
-interface ButtonProps {
-  text: string;
-}
 
+interface ButtonProps {}
 export const AddRecipeContext = createContext<ContextProps>({
   addChosenRecipe: (index: number) => {},
 });
 
-const AddRecipeButton: React.FC<ButtonProps> = ({ text }) => {
+const AddRecipeButton: React.FC<ButtonProps> = ({}) => {
   const history = useHistory();
   return (
     <div className="centering-div">
-      <button
-        className="add-ingredient-button"
+      <Button
+        variant="contained"
+        size="medium"
+        color="secondary"
         onClick={() => {
           history.push("/addRecipe");
         }}
       >
-        {text}
-      </button>
+        CREATE NEW
+      </Button>
     </div>
   );
 };
@@ -50,7 +50,7 @@ export const HomePage: React.FC<HomePageProps> = ({}) => {
         <h1>Home Page</h1>
         <h4>Your recipes</h4>
         <RecipeList recipeList={recipeList} />
-        <AddRecipeButton text="CREATE NEW" />
+        <AddRecipeButton />
 
         <h4>Your chosen recipes</h4>
         <RecipeList recipeList={chosenRecipes} />

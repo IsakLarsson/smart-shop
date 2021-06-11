@@ -8,8 +8,9 @@ export const ShoppingListPage: React.FC<ShoppingListPageProps> = ({}) => {
   return (
     <Container className="home-page-container">
       <h4>Uncrossed items</h4>
-      <ShoppingList variant="crossed" />
+      <ShoppingList variant="uncrossed" />
       <h4>Crossed items</h4>
+      <ShoppingList variant="crossed" />
     </Container>
   );
 };

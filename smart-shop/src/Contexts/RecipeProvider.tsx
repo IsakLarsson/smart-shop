@@ -26,7 +26,7 @@ interface ContextProps {
   createShoppingList: () => void;
   setChosenRecipes: (recipeList: Recipe[]) => void;
   checkedIngredients: Ingredient[];
-  handleIngredientCheck: (ingredient: Ingredient, index: number) => void;
+  handleIngredientCheck: (ingredient: Ingredient) => void;
 }
 
 export const RecipeContext = createContext<ContextProps>({
@@ -44,7 +44,7 @@ export const RecipeContext = createContext<ContextProps>({
   createShoppingList: () => {},
   setChosenRecipes: (recipeList: Recipe[]) => {},
   checkedIngredients: [],
-  handleIngredientCheck: (ingredient: Ingredient, index: number) => {},
+  handleIngredientCheck: (ingredient: Ingredient) => {},
 });
 
 interface ProviderProps {
@@ -107,13 +107,15 @@ const RecipeProvider: React.FC<ProviderProps> = ({ children }) => {
     setShoppingList(addedIngredients);
   };
 
-  const handleIngredientCheck = (
-    ingredient: Ingredient,
-    index: number
-  ): void => {
-    const checkedIngredients = shoppingList.splice(index, 1);
+  const handleIngredientCheck = (ingredient: Ingredient): void => {
+    const newList = shoppingList.filter(
+      (slIngredient: Ingredient) => slIngredient.name === ingredient.name
+    );
+
+    // const newList = [...shoppingList, ];
+    console.log(newList);
     setCheckedIngredients(checkedIngredients);
-    setShoppingList(shoppingList);
+    setShoppingList(newList);
 
     console.log("crossed items: ", checkedIngredients);
     console.log("shoppingList: ", shoppingList);

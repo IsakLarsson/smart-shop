@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { RecipeContext } from "../Contexts/RecipeProvider";
-
 interface AddRecipeButtonProps {
   variant: string;
 }

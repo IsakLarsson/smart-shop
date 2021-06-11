@@ -1,4 +1,4 @@
-import { Grid, Snackbar, TextField } from "@material-ui/core";
+import { Button, Grid, Snackbar, TextField } from "@material-ui/core";
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import "./RecipePageStyles.css";
 import { Container } from "@material-ui/core";
@@ -7,7 +7,6 @@ import Foodgroup from "../Icons/Foodgroup.svg";
 import { RecipeContext } from "../Contexts/RecipeProvider";
 import { IngredientList } from "../Components/IngredientList";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
-import { AddIngredientButton } from "../Components/AddIngredientButton";
 import { useHistory } from "react-router-dom";
 
 function Alert(props: AlertProps) {
@@ -28,6 +27,8 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
     ingredientList,
     ingredientName,
     ingredientAmmount,
+    addIngredient,
+    addRecipe,
   } = recipeContext;
 
   const history = useHistory();
@@ -53,7 +54,7 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
   };
 
   useEffect(() => {
-    console.log("Recipe context: ", recipeContext);
+    // console.log("Recipe context: ", recipeContext);
     return () => {};
   });
 
@@ -107,8 +108,16 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
           />
         </Grid>
       </Grid>
-
-      <AddIngredientButton />
+      <div className="add-ingredient-button">
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          onClick={addIngredient}
+        >
+          ADD INGREDIENT
+        </Button>
+      </div>
 
       <div className="ingredient-list-wrapper">
         {ingredientList?.length !== 0 ? (
@@ -128,10 +137,16 @@ export const AddRecipePage: React.FC<FirstRecipePageProps> = ({ variant }) => {
             : console.log("empty fields empty"); //This checking should be implemented via the textfields
         }}
       >
-        <BigAddButton variant="addRecipe" />
+        {/* <BigAddButton variant="addRecipe" /> */}
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          onClick={addRecipe}
+        >
+          ADD RECIPE
+        </Button>
       </div>
-
-      {/* snackbar giving me problems */}
     </Container>
   );
 };

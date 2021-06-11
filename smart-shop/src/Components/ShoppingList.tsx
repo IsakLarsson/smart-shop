@@ -7,20 +7,30 @@ interface ShoppingListProps {
 }
 
 export const ShoppingList: React.FC<ShoppingListProps> = ({ variant }) => {
-  const { shoppingList } = useContext(RecipeContext);
+  const { shoppingList, checkedIngredients } = useContext(RecipeContext);
 
   return (
     <div>
       <ul>
-        {shoppingList.map((ingredient, index) => {
-          return (
-            <ShoppingListItem
-              ingredient={ingredient}
-              key={`slitm${index}`}
-              index={index}
-            />
-          );
-        })}
+        {variant == "uncrossed"
+          ? shoppingList.map((ingredient, index) => {
+              return (
+                <ShoppingListItem
+                  ingredient={ingredient}
+                  key={`slitm${index}`}
+                  index={index}
+                />
+              );
+            })
+          : checkedIngredients.map((ingredient, index) => {
+              return (
+                <ShoppingListItem
+                  ingredient={ingredient}
+                  key={`slitm${index}`}
+                  index={index}
+                />
+              );
+            })}
       </ul>
     </div>
   );

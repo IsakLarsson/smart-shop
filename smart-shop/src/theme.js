@@ -6,11 +6,18 @@ const theme = createMuiTheme({
       main: "#474F60",
     },
     secondary: {
-      main: "#f44336",
+      main: "#E65757",
     },
   },
   typography: {
     fontFamily: ["Poppins"],
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        borderRadius: 30,
+      },
+    },
   },
 });
 

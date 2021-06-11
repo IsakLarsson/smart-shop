@@ -18,13 +18,13 @@ export const ShoppingListItem: React.FC<ShoppingListItemProps> = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (!checked) {
-      handleIngredientCheck(shoppingList[0], index);
+      handleIngredientCheck(ingredient);
     }
 
     setChecked(!checked);
   };
 
-  const CheckBoxTitle = () => {
+  const CheckBoxTitle: React.FC = () => {
     return checked ? (
       <p className="ingredient-checked">{ingredient.name}</p>
     ) : (

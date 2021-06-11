@@ -28,19 +28,7 @@ h5 {
 }
 
 .add-ingredient-button {
-  font-family: "Poppins", sans-serif; /* Weird that I have to set it here */
-  color: #fff;
-  padding: 5px 40px;
   margin-top: 1.2rem;
-  font-weight: 500;
-  background-color: var(--red-button-color);
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: ease-in-out 0.2s;
-}
-.add-ingredient-button:hover {
-  background-color: var(--hover-red-button);
 }
 
 .ingredient-list-wrapper {
